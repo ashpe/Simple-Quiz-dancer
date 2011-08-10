@@ -9,7 +9,6 @@ our $quiz = Simple::Quiz->new(title => "Learning Cantonese", mode => "shuffle", 
 get '/' => sub {
 
     $quiz->load_sections();
-
     template 'index', { title => $quiz->title, sections => $quiz->section_keys };
 };
 
