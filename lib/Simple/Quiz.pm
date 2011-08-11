@@ -70,14 +70,12 @@ sub load_sections {
 
 sub start {
     my $self = shift;
-    #if ( scalar keys %{ $self->sections } == 0 ) {
-    #    use Data::Dumper;
-    #    die("Error: No sections specified for quiz " . Dumper($self->sections));
-    #}
+    if ( scalar keys %{ $self->sections } == 0 ) {
+        die("Error: No sections specified for quiz " . Dumper($self->sections));
+    }
 
     #TODO: Add more checking here to make sure survey has be initiated
     #      correctly.
-
     $self->status(1);    # start quiz
     return 1;
 }
@@ -91,7 +89,7 @@ sub next_section {
         $self->status(0);    # end quiz
         return 0;
     }
-    else {
+    elsif (scalar @{$self->completed_questions} == 0) {
         my $next_section =
           $self->section_keys->[ $self->__get_next_section_index() ];
         $self->current_section($next_section);

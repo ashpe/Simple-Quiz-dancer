@@ -25,10 +25,15 @@ post '/' => sub {
 };
 
 get '/questions' => sub {
-    
     my $section = $quiz->next_section();
     my $question = $quiz->next_question();    
-    if (!$question) {
+
+    if (scalar @{$quiz->completed_questions} == 0) {
+        $section = $quiz->next_section();
+        $question = $quiz->next_question();
+    }
+
+    if ($quiz->status == 0) {
       template 'finished';
     } else {
       template 'questions', { question => $question->{question}, section => $quiz->current_section, title => $quiz->title };
