@@ -1,0 +1,14 @@
+<div id="page">
+      <div id="content">
+        
+          <div id="header">
+              <h2>[% title %]</h2>
+          </div>
+
+            <h3>Section [% section %]</h3>
+	    <p> [% IF correct; 'Correct'; ELSE; 'Incorrect'; END; %] : answer is [% answer %] </p>
+	    <br />
+	    <a href="./questions">Next question</a>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,11 @@
+<div id="page">
+      <div id="content">
+        
+          <div id="header">
+              <h2>[% title %]</h2>
+          </div>
+
+            <h3>Quiz completed!</h3>
+        </div>
+      </div>
+    </div>
