@@ -34,7 +34,7 @@ get '/questions' => sub {
     }
 
     if ($quiz->status == 0) {
-      template 'finished';
+      template 'finished', { total_correct => $quiz->correct_answers, total_questions => $quiz->total_questions, title => $quiz->title };
     } else {
       template 'questions', { question => $question->{question}, section => $quiz->current_section, title => $quiz->title };
     }
