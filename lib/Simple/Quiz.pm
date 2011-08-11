@@ -15,6 +15,7 @@ has 'approx', is => 'rw', isa => 'Int', default => '1';
 has 'filename',         is => 'rw', isa => 'Str';
 has 'status',           is => 'rw', isa => 'Bool', predicate => '_has_started';
 has 'title',            is => 'rw', isa => 'Str';
+has 'answer',           is => 'rw', isa => 'Str';
 has 'current_section',  is => 'rw', isa => 'Str';
 has 'current_question', is => 'rw', isa => 'Int';
 has 'mode',             is => 'rw', isa => 'Str';
@@ -29,7 +30,7 @@ sub load_sections {
     if ( $self->_has_started ) {
         return 0;
     }
-
+    
     open my $fh, '<', $self->filename;
     my $questions_input = LoadFile($fh);
 
@@ -37,6 +38,9 @@ sub load_sections {
 
     # Read through sections and load all found sections into sections.
     if ($sections) {
+
+	$self->sections({});
+	$self->section_keys([]);
         foreach ( @{$sections} ) {
             my $section = $questions_input->{questions}{sections}{$_};
             if ( defined $section ) {
@@ -52,7 +56,7 @@ sub load_sections {
             return 0;
         }
         elsif ( scalar @section_errors >= 1 ) {
-            say "Error can't load following sections: @section_errors";
+            die "Error can't load following sections: @section_errors";
         }
     }
     else {
@@ -66,9 +70,10 @@ sub load_sections {
 
 sub start {
     my $self = shift;
-    if ( scalar keys %{ $self->sections } == 0 ) {
-        die("Error: No sections specified for quiz");
-    }
+    #if ( scalar keys %{ $self->sections } == 0 ) {
+    #    use Data::Dumper;
+    #    die("Error: No sections specified for quiz " . Dumper($self->sections));
+    #}
 
     #TODO: Add more checking here to make sure survey has be initiated
     #      correctly.
@@ -108,7 +113,7 @@ sub next_question {
     }
 }
 
-# Matches exactly - typos = incorect
+# Matches exactly - typos = incorrect
 sub answer_question_exact {
     my ( $self, $answer ) = @_;
 

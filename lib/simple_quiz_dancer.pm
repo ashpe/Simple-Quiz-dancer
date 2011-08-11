@@ -10,11 +10,16 @@ get '/' => sub {
 
     $quiz->load_sections();
     template 'index', { title => $quiz->title, sections => $quiz->section_keys };
+
 };
 
 post '/' => sub {
-
-    #$quiz->load_sections("previously_selected_sections");
+    my $sections = params->{sections};
+    if (!UNIVERSAL::isa($sections, "ARRAY")) {
+        $sections = [];
+        push @{$sections}, params->{sections};
+    }
+    $quiz->load_sections($sections);
     $quiz->start();
     redirect 'questions';
 };
@@ -23,20 +28,25 @@ get '/questions' => sub {
     
     my $section = $quiz->next_section();
     my $question = $quiz->next_question();    
-
-    template 'questions', { question => $question->{question}, section => $quiz->current_section, title => $quiz->title };
+    if (!$question) {
+      template 'finished';
+    } else {
+      template 'questions', { question => $question->{question}, section => $quiz->current_section, title => $quiz->title };
+    }
 };
 
 post '/questions' => sub {
     # store answer here
-    # $quiz->answer($args);
+    my $answer = params->{question};
+    $quiz->answer($answer);
     redirect 'result';
 };
 
 get '/result' => sub {
    # return answer, correctness of answer, section, title and have a link to go to next question. 
-   my $question;
-   template 'result', { answer => $question->{answer} }; 
+   my $answer = $quiz->sections->{$quiz->current_section}->[$quiz->current_question]{answer};
+   my $check_answer = $quiz->answer_question_approx($quiz->answer);
+   template 'result', { answer => $answer, correct => $check_answer, title => $quiz->title, section => $quiz->current_section }; 
 };
 
 true;
