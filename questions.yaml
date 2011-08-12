@@ -1,44 +1,663 @@
+---
 questions:
   sections:
-    1:
-     - answer: Nay Hoh
-       question: Hello
-     - answer: Nay
-       question: You
-     - answer: Hoh        
-       question: Very or Good
-    2:
-     - answer: Nay Hoh Mah
-       question: How are you?
-     - answer: Ngor
-       question: I
-     - answer: Ngor Hoh Hoh
-       question: I'm very good
-    3:
-     - answer: Nay Hoh Mah
-       question: How are you?
-     - answer: Ngor
-       question: I
-     - answer: Ngor Hoh Hoh
-       question: I'm very good
-    4:
-     - answer: Nay Hoh Mah
-       question: How are you?
-     - answer: Ngor
-       question: I
-     - answer: Ngor Hoh Hoh
-       question: I'm very good
-    5:
-     - answer: Nay Hoh Mah
-       question: How are you?
-     - answer: Ngor
-       question: I
-     - answer: Ngor Hoh Hoh
-       question: I'm very good
-    Lynypoo:
-     - answer: Nay Hoh Mah
-       question: How are you?
-     - answer: Ngor
-       question: I
-     - answer: Ngor Hoh Hoh
-       question: I'm very good
+    '1':
+    - answer: nay hoh
+      literally: you good
+      question: Hello
+    - answer: nay hoh
+      literally: you good
+      question: Hello
+    - answer: nay hoh mah
+      literally: you good +?
+      question: How are you?
+    - answer: ngoh hoh hoh
+      literally: I very good
+      question: I'm very good
+    - answer: nay neh
+      literally: you what about?
+      question: What about you?
+    - answer: ngoh hoh hoh, doh-tzay, nay neh
+      literally: (same)
+      question: I'm very good thank you, what about you?
+    - answer: may gwohk
+      literally: beautiful country
+      question: America
+    - answer: johng gwohk
+      literally: middle country
+      question: China
+    '10':
+    - answer: yut goh yan
+      literally: (same)
+      question: One person
+    - answer: sahm goh yan
+      literally: (same)
+      question: Three people
+    - answer: lohk goh yan
+      literally: (same)
+      question: Six people
+    - answer: yut gah tchay
+      literally: (same)
+      question: One car
+    - answer: leung gah tchay
+      literally: (same)
+      question: Two cars
+    - answer: sup goh yan
+      literally: (same)
+      question: 10 people
+    - answer: yut-dee tchay
+      literally: (same)
+      question: Some cars
+    - answer: keui-day hie gah tchay doh
+      literally: they located the car place
+      question: They're in the car
+    '11':
+    - answer: nee gah tchay
+      literally: (same)
+      question: This car
+    - answer: goh gah tchay
+      literally: (same)
+      question: That car
+    - answer: goh goh yan
+      literally: (same)
+      question: That person
+    - answer: ngoh johng-yee nee gah tchay
+      literally: (same)
+      question: I like this car
+    - answer: ngoh johng-yee nay
+      literally: (same)
+      question: I like you
+    - answer: ngoh johng-yee johng-gwohk
+      literally: (same)
+      question: I like China
+    - answer: ngoh johng-yee nee doh
+      literally: (same)
+      question: I like this place
+    - answer: nay johng-hm-johng yee ah
+      literally: you like / not like as +?
+      question: Do you like it?
+    - answer: nay johng-hm-johng yee nee doh ah
+      literally: you like/don't like this place +?
+      question: Do you like this place?
+    - answer: nay johng-hm-johng yee heung-gahng ah
+      literally: you like/don't like Hong Kong +?
+      question: Do you like Hong Kong?
+    - answer: johng-yee
+      literally: like
+      question: Yes (affirmative answer)
+    - answer: hm johng-yee
+      literally: not like
+      question: No
+    - answer: nay johng-hm-johng yee goh gah tchay ah
+      literally: you like-not-like that car +?
+      question: Do you like that car?
+    - answer: been gah tchay
+      literally: (same)
+      question: Which car
+    - answer: been goh yan
+      literally: which person
+      question: Who
+    - answer: nay johng-yee been goh yan ah
+      literally: you like which person +?
+      question: Who do you like?
+    - answer: ngoh johng-yee djew fahn
+      literally: I like to cook rice
+      question: I like to cook
+    - answer: ngoh djew-gun fahn
+      literally: (same)
+      question: I'm cooking
+    - answer: nay djew-gun mut-yeh ah
+      literally: you cooking what +?
+      question: What are you cooking?
+    - answer: ngoh hoh johng-yee
+      literally: I very much like
+      question: I like it very much (e.g. to compliment food)
+    - answer: ngoh hm hie hoh johng-yee
+      literally: I not is very much like
+      question: I don't like it very much
+    '12':
+    - answer: yut yut
+      literally: (same)
+      question: One day
+    - answer: yut goh sing-kay
+      literally: (same)
+      question: One week
+    - answer: nee goh sing-kay
+      literally: (same)
+      question: This week
+    - answer: hah goh sing-kay
+      literally: (same)
+      question: Next week
+    - answer: sing-kay yut
+      literally: week one
+      question: Monday
+    - answer: sing-kay yee
+      literally: week two
+      question: Tuesday
+    - answer: sing-kay sahm
+      literally: week three
+      question: Wednesday
+    - answer: sing-kay say
+      literally: week four
+      question: Thursday
+    - answer: sing-kay hm
+      literally: week five
+      question: Friday
+    - answer: sing-kay lohk
+      literally: week six
+      question: Saturday
+    - answer: sing-kay yut
+      literally: week day
+      question: Sunday (exception to the pattern)
+    - answer: sing-kay yut
+      literally: week one
+      question: Monday
+    - answer: sing-kay yut
+      literally: week day
+      question: Sunday
+    - answer: ngoh sing-kay sahm houe nay doh
+      literally: I wednesday go your place
+      question: I'm going to your place on Wednesday
+    - answer: nee goh sing-kay say
+      literally: this week four
+      question: Thursday of this week
+    - answer: hah goh sing-kay yee
+      literally: next week two
+      question: Tuesday of next week
+    '13':
+    - answer: yeut
+      literally: moon
+      question: Month
+    - answer: nee goh yeut
+      literally: this moon
+      question: This month
+    - answer: ngoh nee goh yeut houe heung-gahng
+      literally: I this month going to Hong Kong
+      question: This month I'm going to Hong Kong
+    - answer: hah goh yeut
+      literally: next moon
+      question: Next month
+    - answer: yut yeut
+      literally: one month
+      question: January
+    - answer: lohk yeut
+      literally: six month
+      question: June
+    - answer: tut yeut
+      literally: seven month
+      question: July
+    - answer: gau yeut
+      literally: nine month
+      question: September
+    - answer: sup yeut
+      literally: ten month
+      question: October
+    - answer: lohk yeut gau hoh
+      literally: six month, nine number
+      question: It's June 9th
+    - answer: sup yut
+      literally: ten, one
+      question: '11'
+    - answer: sup yee
+      literally: ten, two
+      question: '12'
+    - answer: sup sahm
+      literally: ten, three
+      question: '13'
+    - answer: sup say
+      literally: ten, four
+      question: '14'
+    - answer: sup yut yeut
+      literally: eleven month
+      question: November
+    - answer: sup yee yew
+      literally: twelve month
+      question: December
+    - answer: ngoh lohk yeut houe johng-gwohk
+      literally: I June going to China
+      question: I'm going to China in June
+    - answer: ngoh yee-yoot houe may-gwohk
+      literally: I February going to America
+      question: I'm going to America in February
+    '14':
+    - answer: ngoh tzun hie houe johng-gwohk
+      literally: I really going to china
+      question: I'm really going to China
+    - answer: ngoh yau gah tchay
+      literally: (same)
+      question: I have a car
+    - answer: ngoh moh tchay
+      literally: I not have car
+      question: I don't have a car
+    - answer: ngoh yau gah tchay
+      literally: (same)
+      question: I have a car
+    - answer: ngoh moh tchay
+      literally: (same)
+      question: I don't have a car
+    - answer: nay yau moh tchay ah
+      literally: you have-not-have a car +?
+      question: Do you have a car?
+    - answer: yau
+      literally: have
+      question: Yes (affirmative response)
+    - answer: moh
+      literally: not have
+      question: No (negative response)
+    - answer: yau, ngoh yau gah tchay
+      literally: have, I have a car
+      question: Yes, I have a car
+    - answer: moh, ngoh mo tchay
+      literally: not have, I not have car
+      question: No, I don't have a car
+    '15':
+    - answer: yau moh fahn-gahn ah
+      literally: have-not-have soap +?
+      question: Is there any soap?
+    - answer: tew moh-gun
+      literally: a towel
+      question: A towel (with measure word)
+    - answer: hie-hm-hie yau tew moh-gun ah
+      literally: is-not-is have towel? +?
+      question: Is there a towel?
+    - answer: moh-gun hie been doh ah
+      literally: towel located where +?
+      question: Where is the towel?
+    - answer: nay yau moh but ah
+      literally: you have-not-have pen +?
+      question: Do you have a pen
+    - answer: mo, ngoh moh but
+      literally: not have, I not have pen
+      question: No, I don't have a pen
+    - answer: yut tchee but
+      literally: (same)
+      question: One pen
+    - answer: yau, ngoh yau sahm tchee but
+      literally: have, I have 3 pens
+      question: Yes, I have 3 pens
+    - answer: nee-doh yau hoh doh yahn
+      literally: here has many people
+      question: There are many people here
+    - answer: nay yau moh tcheen ah
+      literally: you have / not have money +?
+      question: Do you have any money?
+    - answer: ngoh yau tcheen
+      literally: (same)
+      question: I have money
+    - answer: ngoh yau yut-dee tcheen
+      literally: (same)
+      question: I have some money
+    - answer: ngoh yau hoh doh tcheen
+      literally: I have very much money
+      question: I have a lot of money
+    - answer: hoh yau tcheen
+      literally: very has money
+      question: Rich
+    - answer: keui hoh yau tcheen
+      literally: she very rich
+      question: She is rich
+    '2':
+    - answer: may-gwohk yan
+      literally: America person
+      question: American
+    - answer: johng-gwohk yan
+      literally: China person
+      question: Chinese
+    - answer: ngoh hie may-gwohk yan
+      literally: I am America person
+      question: I am America
+    - answer: nay hie johng-gwohk yan
+      literally: you are China person
+      question: You are Chinese
+    - answer: ngoh hie yeeng gwohk yan
+      literally: (same)
+      question: I am English
+    - answer: hm hie
+      literally: not am
+      question: Am not
+    - answer: nay hm hie may-gwohk yan
+      literally: you not are American
+      question: You are not American
+    - answer: ngoh hm hie johng-gwohk yan
+      literally: I not am Chinese
+      question: I am not Chinese
+    - answer: nay hie-hm-hie ah
+      literally: you are-not-are +?
+      question: Are you?
+    - answer: nay hie-hm-hie may-gwohk yan ah
+      literally: you are-not-are American +?
+      question: Are you American?
+    - answer: hie
+      literally: am
+      question: Yes
+    - answer: hm hie
+      literally: not am
+      question: No
+    '3':
+    - answer: hm sik
+      literally: not know how
+      question: To not know how
+    - answer: ngoh sik
+      literally: (same)
+      question: I know how
+    - answer: nay hm sik
+      literally: you not know how
+      question: You don't know how
+    - answer: gwahng-dohng wah
+      literally: Guongdong speech
+      question: Cantonese language
+    - answer: ngoh sik tayng gwahng-dohng wah
+      literally: I know how to listen Guongdong speech +?
+      question: I understand Cantonese
+    - answer: nay sik-hm-sik tayng ah
+      literally: you know-not-know how to listen +?
+      question: Can you understand?
+    - answer: nay sik-hm-sik tayng yeeng mun ah
+      literally: you know-not-know how to listen English +?
+      question: Can you understand English?
+    - answer: sik tayng
+      literally: know how to listen
+      question: Yes (affirmative response)
+    - answer: hm sik tayng
+      literally: not know how to listen
+      question: No
+    - answer: ngoh sik gahng yeeng mun
+      literally: (same)
+      question: I know how to speak English
+    - answer: nay sik-hm-sik gahng yeeng mun ah
+      literally: you know-not-know how to speak English +?
+      question: Do you know how to speak English?
+    - answer: sik gahng
+      literally: know how to speak
+      question: Yes
+    - answer: hm sik gahng
+      literally: not know how to speak
+      question: No
+    - answer: hm sik gahng, ngoh hm sik gahng yeeng mun
+      literally: not know how, not know how to speak English
+      question: No, I don't know how to speak English
+    '4':
+    - answer: tchayng mun
+      literally: please to ask
+      question: May I ask?
+    - answer: tchayng mun sew-tday
+      literally: may I ask miss
+      question: Miss, may I ask?
+    - answer: tchayng mun sew-dzay, nay sik-hm-sik gahng yeeng mun ah
+      literally: may I ask miss, you know-not-know how to speak English? +?
+      question: May I ask miss, do you know how to speak English
+    - answer: tchayng mun, seen-sahn
+      literally: (same)
+      question: May I ask sir
+    - answer: tchayng mun seen-sahn, nay sik-hm-sik gahng yeeng mun ah
+      literally: may I ask sir, you know-not-know how to speak English? +?
+      question: May I ask sir, do you know how to speak English
+    - answer: yut-dee yan
+      literally: (same)
+      question: Some people
+    - answer: ngoh sik gahng yut-dee gwahng-dohng wah
+      literally: I know how to speak a little Cantonese
+      question: I can speak a little Cantonese
+    - answer: hoh doh
+      literally: (same)
+      question: Very much
+    - answer: nay sik gahng hoh doh gwahng-dohng wah
+      literally: you know how to speak very much Cantonese
+      question: You can speak a lot of Cantonese
+    - answer: nay sik tayng hoh doh yeeng mun
+      literally: you understand very much English
+      question: You understand a lot of English
+    - answer: ngoh gahng duk hm hoh
+      literally: I speak not good
+      question: I don't speak well
+    - answer: ngoh houe johng-gwohk
+      literally: I going to China
+      question: I'm going to China
+    - answer: nay houe may-gwohk
+      literally: you going to America
+      question: You're going to America
+    '5':
+    - answer: heung-gahng
+      literally: fragrant harbor
+      question: Hong Kong
+    - answer: ngoh houe heung-gahng
+      literally: I going to Hong Kong
+      question: I'm going to Hong Kong
+    - answer: nay houe gwahng-zau
+      literally: You going to Guongzhou
+      question: You're going to Guongzhou
+    - answer: nay hie-hm-hie houe gwahng-zau ah
+      literally: you are-not-are going Guongzhou +?
+      question: Are you going to Guongzhou?
+    - answer: hie
+      literally: are
+      question: Yes (affirmative response)
+    - answer: hm hie
+      literally: not are
+      question: No
+    - answer: hie, ngoh houe gwahng-zau
+      literally: am, I going Guongzhou
+      question: Yes, I'm going to guongzhou
+    - answer: keui sik gahng yeeng-mun
+      literally: he knows how to speak English
+      question: He knows how to speak English
+    - answer: keui-day hie may-gwohk yan
+      literally: (same)
+      question: They are American
+    - answer: ngoh-day sik tayng yut-dee gwahng-dohng wah
+      literally: we konw how to listen a little Cantonese
+      question: We can understand a little Cantonese
+    - answer: nay-day hie-hm-hie houe johng-gwohk ah
+      literally: you guys are-not-are going China +?
+      question: Are you guys going to China?
+    - answer: ngoh doh
+      literally: I place
+      question: My place
+    - answer: nay doh
+      literally: you place
+      question: Your place
+    - answer: keui doh
+      literally: (same)
+      question: His / her place
+    - answer: ngoh-day doh
+      literally: (same)
+      question: Our place
+    - answer: ngoh houe nay doh
+      literally: I going to your place
+      question: I'm going to your place
+    - answer: ngoh-day hie-hm-hie houe keui doh ah
+      literally: we are-not-are going to her place +?
+      question: Are we going to her place?
+    '6':
+    - answer: nee doh
+      literally: this place
+      question: Here
+    - answer: goh doh
+      literally: that place
+      question: There
+    - answer: hie nee do
+      literally: located this place
+      question: It's here
+    - answer: hie-hm-hie hie nee doh ah
+      literally: it is-not-is located here +?
+      question: Is it here?
+    - answer: hie goh doh
+      literally: located that place
+      question: It's over there
+    - answer: keui hie goh doh
+      literally: he located that place
+      question: He is over there
+    - answer: keui hie ngoh doh
+      literally: she located my place
+      question: She is at my place
+    - answer: been goh yan ah
+      literally: (same)
+      question: Which person
+    - answer: been doh
+      literally: which place
+      question: Where
+    - answer: nee-doh hie been doh ah
+      literally: ''
+      question: Where are we? (e.g. useful  when on a train/bus trip)
+    - answer: hie been doh ah
+      literally: located which place +?
+      question: Where is it?
+    - answer: nay houe been doh ah
+      literally: you going where +?
+      question: You going where
+    - answer: nay hie been doh yan ah
+      literally: you are which place person +?
+      question: Where are you from?
+    - answer: keui hie been doh ah
+      literally: he located where +?
+      question: Where is he?
+    - answer: nay pung yau hie nee doh
+      literally: your friend located here
+      question: Your friend is here
+    - answer: nay dee pung-yau hie goh doh
+      literally: your friends located there
+      question: Your friend is there
+    '7':
+    - answer: sic fahn
+      literally: eat rice
+      question: Eat a meal
+    - answer: ngoh sic-gun fahn
+      literally: I eating rice
+      question: I am eating
+    - answer: ngoh seung sic fahn
+      literally: I would like to eat
+      question: I would like to eat (a meal)
+    - answer: ngoh seung sic yeh
+      literally: I would like to eat something
+      question: I would like to eat something (e.g. a snack)
+    - answer: nay seung hm seung sic fahn ah
+      literally: you want-not-want to eat rice +?
+      question: Would you like to eat a meal?
+    - answer: nay seung hm sueng sic yut-dee yeh ah
+      literally: you want-not-want to eat a little something +?
+      question: Would you like to have a snack?
+    - answer: nay seung houe been doh sic ah
+      literally: you want to go where to eat +?
+      question: Where do you want to go to eat?
+    - answer: ngoh seung hie nee doh sic
+      literally: I would like located here to eat
+      question: I would like to eat here
+    - answer: nay seung hm seung hie ngoh doh sic ah
+      literally: you want-not-want located my place to eat +?
+      question: Would you like to eat at my place?
+    - answer: dzau lau
+      literally: wine building
+      question: Chinese restaurant
+    - answer: ngoh seung houe dzau-lau sic
+      literally: (same)
+      question: I would like to go to a restaurant to eat
+    - answer: dzau-lau hie been doh ah
+      literally: restaurant located where +?
+      question: Where is the restaurant?
+    - answer: ngoh seung sie-meen
+      literally: I would like to wash face
+      question: I would like to wash my face
+    - answer: ngoh seung sie sau
+      literally: I would like to wash hands
+      question: I would like to wash my hands
+    - answer: sie sau gahn
+      literally: wash hands area
+      question: Restroom
+    - answer: sie-sau-gahn hie been doh ah
+      literally: restroom located where
+      question: Where is the restroom?
+    - answer: tzayng mun, sie-sau-gahn hie been-doh ah
+      literally: may I ask, restroom located where +?
+      question: Excuse me, where is the restroom?
+    - answer: nay seung-hm-seung houe sie-sau-gahn ah
+      literally: you want-not-want to go to restroom +?
+      question: Do you want to go to the restroom?
+    - answer: tchee soh hie been doh ah
+      literally: toilets located where +?
+      question: Where are the toilets?
+    '8':
+    - answer: smith seen-sahn
+      literally: 'Smith Mr. '
+      question: Mr. Smith
+    - answer: ngoh seeng smith
+      literally: I last name Smith
+      question: My last name is Smith
+    - answer: seen-sahn, joh sahn
+      literally: sir, good morning
+      question: Good morning sir
+    - answer: smith seen-sahn, joh sahn
+      literally: Smith Mr., good morning
+      question: Mr. Smith, good morning
+    - answer: smith seen-sahn, nay hoh mah
+      literally: Smith Mr., you good +?
+      question: Mr. Smith, how are you
+    - answer: tchun sew-dzay
+      literally: Chen Miss
+      question: Miss Chen
+    - answer: tchun tie-tie
+      literally: Chen Mrs.
+      question: Mrs. Chen
+    - answer: tchun tie-tie, nuh
+      literally: Chen Mrs., how about?
+      question: How about Mrs. Chen?
+    - answer: tchun tie-tie hoh hoh
+      literally: Chen Mrs. very good
+      question: Mrs. Chen is very good
+    - answer: nay nuh
+      literally: you, what about?
+      question: How about you?
+    - answer: ngoh doh hoh hoh
+      literally: I also very good
+      question: I'm also very good
+    - answer: ngoh hie chris
+      literally: I Chris
+      question: I'm Chris
+    - answer: ngoh hie smith seen-sahn
+      literally: I Smith Mr.
+      question: I'm Mr. Smith
+    - answer: ngoh gew
+      literally: I called
+      question: My name is
+    - answer: ngoh gew chris
+      literally: I called Chris
+      question: My name is Chris
+    '9':
+    - answer: nay gahng-gun mut-yeh ah
+      literally: you say what +?
+      question: What did you say?
+    - answer: nay gew mut-yeh mayng ah
+      literally: you called what name +?
+      question: What's your first name? (informal)
+    - answer: keui gew mut-yeh mayng ah
+      literally: she called what name +?
+      question: What's her first name?
+    - answer: nay pung-yau gew mut-yeh mayng ah
+      literally: your friend called what name +?
+      question: What's your friend's first name?
+    - answer: keui gew mary
+      literally: she called Mary
+      question: Her name is Mary
+    - answer: ngoh goh mayng gew chris
+      literally: my name called Chris
+      question: My name is Chris (alternate)
+    - answer: chris nay hoh
+      literally: Chris hello
+      question: Hello Chris
+    - answer: chris joh sahn
+      literally: Chris, good morning
+      question: Good morning Chris
+    - answer: nay hoh mah
+      literally: you good +?
+      question: How are you?
+    - answer: gay hoh
+      literally: (same)
+      question: Pretty good
+    - answer: hoh hoh, doh djay
+      literally: (same)
+      question: Very good, thanks
+    - answer: hoh hoh, nay nuh
+      literally: (same)
+      question: Very good, and you?
+    - answer: gay hoh, nay nuh
+      literally: (same)
+      question: Pretty good, and you?
