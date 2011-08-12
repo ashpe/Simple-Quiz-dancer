@@ -6,8 +6,9 @@
           </div>
 
             <h3>Section [% section %]</h3>
-	    <p> [% IF correct; 'Correct'; ELSE; 'Incorrect'; END; %] : answer is [% answer %] </p>
-	    <br />
+	    <p><b style="color: red"> [% IF correct; 'Correct'; ELSE; 'Incorrect'; END; %] :</b> answer is [% question.answer %] <br />
+	    <b style="color: green"> English : </b> [% question.question %] <br />
+	    <b>Literally means :</b>  [% question.literally %] </p> 
 	    <a href="./questions">Next question</a>
         </div>
       </div>

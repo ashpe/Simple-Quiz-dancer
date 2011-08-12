@@ -76,13 +76,13 @@ post '/questions' => sub {
 get '/result' => sub {
 
 # return answer, correctness of answer, section, title and have a link to go to next question.
-    my $answer =
+    my $question =
       $quiz->sections->{ $quiz->current_section }
-      ->[ $quiz->current_question ]{answer};
+      ->[ $quiz->current_question ];
     my $check_answer = $quiz->answer_question_approx( $quiz->answer );
     template 'result',
       {
-        answer  => $answer,
+        question  => $question,
         correct => $check_answer,
         title   => $quiz->title,
         section => $quiz->current_section

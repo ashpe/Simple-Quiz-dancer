@@ -9,8 +9,7 @@
 	    <form id="answer_question" method="POST">
 	    <p>How do you say [% question %] in cantonese?</p>
 	    <input type="text" id="question" name="question" />
-    
-	    <br />
+	    <br /><br />
             <input type="submit" value="Next" />
             </form>
 
