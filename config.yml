@@ -5,6 +5,9 @@
 # Your application's name
 appname: "simple_quiz_dancer"
 
+session: "cookie"
+session_cookie_key: "onetwothreefour"
+
 # The default layout to use for your application (located in
 # views/layouts/main.tt)
 layout: "main"
