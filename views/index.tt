@@ -7,7 +7,7 @@
 
             <h3> Select sections you wish to complete! </h3>
 	    <form id="section_select" method="POST">
-            [% FOREACH section IN sections %]
+            [% FOREACH section IN sections.nsort %]
                 [% section %] <input type="checkbox" name="sections" value="[% section %]" /><br />
             [% END %]
 
