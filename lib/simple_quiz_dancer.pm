@@ -7,9 +7,10 @@ our $VERSION = '0.1';
 our $quiz = Simple::Quiz->new(title => "Learning Cantonese", mode => "shuffle", filename => "questions.yaml");
 
 get '/' => sub {
-
-    $quiz->load_sections();
-    template 'index', { title => $quiz->title, sections => $quiz->section_keys };
+    
+    my $tmp_quiz = Simple::Quiz->new(title => "Learning Cantonese", mode => "shuffle", filename => "questions.yaml");
+    $tmp_quiz->load_sections();
+    template 'index', { title => $tmp_quiz->title, sections => $tmp_quiz->section_keys };
 
 };
 
@@ -34,7 +35,11 @@ get '/questions' => sub {
     }
 
     if ($quiz->status == 0) {
-      template 'finished', { total_correct => $quiz->correct_answers, total_questions => $quiz->total_questions, title => $quiz->title };
+      my $total_correct = $quiz->correct_answers;
+      my $total_questions = $quiz->total_questions;
+      my $title = $quiz->title;
+      $quiz->reset();
+      template 'finished', { total_correct => $total_correct, total_questions => $total_questions, title => $title };
     } else {
       template 'questions', { question => $question->{question}, section => $quiz->current_section, title => $quiz->title };
     }

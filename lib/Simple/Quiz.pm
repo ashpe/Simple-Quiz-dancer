@@ -102,7 +102,7 @@ sub next_section {
 sub next_question {
     my $self    = shift;
     my $section = $self->sections->{ $self->current_section };
-    if ( scalar @{$section} == scalar @{ $self->completed_questions } ) {
+    if (scalar @{$section} == scalar @{ $self->completed_questions } ) {
         $self->section_complete( $self->current_section );
         return 0;
     }
@@ -152,6 +152,16 @@ sub answer_question_approx {
         return 0;
     }
 
+}
+sub reset {
+    my $self = shift;
+    $self->completed_questions([]);
+    $self->completed_sections([]);
+    $self->section_keys([]);
+    $self->current_question();
+    $self->current_section('');
+    $self->correct_answers(0);
+    $self->total_questions(0);
 }
 
 sub section_complete {

@@ -12,6 +12,9 @@
 	    <h1 style="color: purple;"> [% (total_correct * 100) / total_questions FILTER format('%.2f') %]%</h1>
             <b>Total Questions:</b> [% total_questions %]<br />
             <b>Total Correct:</b> [% total_correct %]
+	    
+  	    <br /><br />
+	    <a href="./">Try again</a>
         </div>
       </div>
     </div>
