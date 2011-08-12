@@ -18,8 +18,8 @@ has 'title',            is => 'rw', isa => 'Str';
 has 'answer',           is => 'rw', isa => 'Str';
 has 'current_section',  is => 'rw', isa => 'Str';
 has 'current_question', is => 'rw', isa => 'Int';
-has 'correct_answers', is => 'rw', isa => 'Int', default => 0;
-has 'total_questions', is => 'rw', isa => 'Int', default => 0;
+has 'correct_answers',  is => 'rw', isa => 'Int', default => 0;
+has 'total_questions',  is => 'rw', isa => 'Int', default => 0;
 has 'mode',             is => 'rw', isa => 'Str';
 has 'completed_questions', is => 'rw', isa => 'ArrayRef', default => sub { [] };
 has 'completed_sections', is => 'rw', isa => 'ArrayRef', default => sub { [] };
@@ -32,7 +32,7 @@ sub load_sections {
     if ( $self->_has_started ) {
         return 0;
     }
-    
+
     open my $fh, '<', $self->filename;
     my $questions_input = LoadFile($fh);
 
@@ -41,8 +41,8 @@ sub load_sections {
     # Read through sections and load all found sections into sections.
     if ($sections) {
 
-	$self->sections({});
-	$self->section_keys([]);
+        $self->sections( {} );
+        $self->section_keys( [] );
         foreach ( @{$sections} ) {
             my $section = $questions_input->{questions}{sections}{$_};
             if ( defined $section ) {
@@ -73,7 +73,8 @@ sub load_sections {
 sub start {
     my $self = shift;
     if ( scalar keys %{ $self->sections } == 0 ) {
-        die("Error: No sections specified for quiz " . Dumper($self->sections));
+        die( "Error: No sections specified for quiz "
+              . Dumper( $self->sections ) );
     }
 
     #TODO: Add more checking here to make sure survey has be initiated
@@ -91,7 +92,7 @@ sub next_section {
         $self->status(0);    # end quiz
         return 0;
     }
-    elsif (scalar @{$self->completed_questions} == 0) {
+    elsif ( scalar @{ $self->completed_questions } == 0 ) {
         my $next_section =
           $self->section_keys->[ $self->__get_next_section_index() ];
         $self->current_section($next_section);
@@ -102,7 +103,7 @@ sub next_section {
 sub next_question {
     my $self    = shift;
     my $section = $self->sections->{ $self->current_section };
-    if (scalar @{$section} == scalar @{ $self->completed_questions } ) {
+    if ( scalar @{$section} == scalar @{ $self->completed_questions } ) {
         $self->section_complete( $self->current_section );
         return 0;
     }
@@ -139,8 +140,8 @@ sub answer_question_approx {
     my $cur_question = $self->current_question;
 
     push @{ $self->completed_questions }, $cur_question;
-    my $correct_answer = $section->[$cur_question]{answer};
-    my $matches = distance( lc($correct_answer), lc($answer) );
+    my $correct_answer  = $section->[$cur_question]{answer};
+    my $matches         = distance( lc($correct_answer), lc($answer) );
     my $total_questions = $self->total_questions + 1;
     $self->total_questions($total_questions);
     if ( $matches <= $self->approx ) {
@@ -153,11 +154,12 @@ sub answer_question_approx {
     }
 
 }
+
 sub reset {
     my $self = shift;
-    $self->completed_questions([]);
-    $self->completed_sections([]);
-    $self->section_keys([]);
+    $self->completed_questions( [] );
+    $self->completed_sections(  [] );
+    $self->section_keys(        [] );
     $self->current_question();
     $self->current_section('');
     $self->correct_answers(0);
