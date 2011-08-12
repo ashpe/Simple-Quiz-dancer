@@ -13,7 +13,7 @@ use Text::LevenshteinXS qw/distance/;
 
 has 'approx', is => 'rw', isa => 'Int', default => '1';
 has 'filename',         is => 'rw', isa => 'Str';
-has 'status',           is => 'rw', isa => 'Bool', predicate => '_has_started';
+has 'status',           is => 'rw', isa => 'Bool';
 has 'title',            is => 'rw', isa => 'Str';
 has 'answer',           is => 'rw', isa => 'Str';
 has 'current_section',  is => 'rw', isa => 'Str';
@@ -29,7 +29,7 @@ has 'sections',           is => 'rw', isa => 'HashRef',  default => sub { {} };
 sub load_sections {
     my ( $self, $sections ) = @_;
 
-    if ( $self->_has_started ) {
+    if ( $self->status ) {
         return 0;
     }
 
@@ -159,7 +159,6 @@ sub reset {
     my $self = shift;
     $self->completed_questions( [] );
     $self->completed_sections(  [] );
-    $self->section_keys(        [] );
     $self->current_question();
     $self->current_section('');
     $self->correct_answers(0);
