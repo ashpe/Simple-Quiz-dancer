@@ -40,7 +40,6 @@ sub load_sections {
 
     # Read through sections and load all found sections into sections.
     if ($sections) {
-
         $self->sections( {} );
         $self->section_keys( [] );
         foreach ( @{$sections} ) {
