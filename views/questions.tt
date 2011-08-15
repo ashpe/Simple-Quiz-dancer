@@ -6,7 +6,7 @@
           </div>
 
             <h3>Section [% section %]</h3>
-	    <form id="answer_question" method="POST">
+	    <form id="answer_question" method="POST" autocomplete="off">
 	    <p>How do you say "[% question %]" in cantonese?</p>
 	    <input type="text" id="question" name="question" />
 	    <br /><br />
