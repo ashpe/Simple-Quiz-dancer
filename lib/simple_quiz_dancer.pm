@@ -91,6 +91,9 @@ get '/result' => sub {
       $quiz->sections->{ $quiz->current_section }
       ->[ $quiz->current_question ];
     my $check_answer = $quiz->answer_question_approx( $quiz->answer );
+    
+    $question->{answer} =~ s/-//g;
+
     session quiz => $quiz;
     template 'result',
       {
