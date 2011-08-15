@@ -12,24 +12,24 @@ use Data::Dumper;
 use Text::LevenshteinXS qw/distance/;
 
 has 'approx', is => 'rw', isa => 'Int', default => '1';
-has 'filename',         is => 'rw', isa => 'Str';
-has 'status',           is => 'rw', isa => 'Bool';
-has 'title',            is => 'rw', isa => 'Str';
-has 'answer',           is => 'rw', isa => 'Str';
-has 'current_section',  is => 'rw', isa => 'Str';
-has 'current_question', is => 'rw', isa => 'Int';
-has 'correct_answers',  is => 'rw', isa => 'Int', default => 0;
-has 'total_questions',  is => 'rw', isa => 'Int', default => 0;
-has 'mode',             is => 'rw', isa => 'Str';
+has 'filename',            is => 'rw', isa => 'Str';
+has 'status',              is => 'rw', isa => 'Bool';
+has 'title',               is => 'rw', isa => 'Str';
+has 'answer',              is => 'rw', isa => 'Str';
+has 'current_section',     is => 'rw', isa => 'Str';
+has 'current_question',    is => 'rw', isa => 'Int';
+has 'correct_answers',     is => 'rw', isa => 'Int', default => 0;
+has 'total_questions',     is => 'rw', isa => 'Int', default => 0;
+has 'mode',                is => 'rw', isa => 'Str';
 has 'completed_questions', is => 'rw', isa => 'ArrayRef', default => sub { [] };
-has 'completed_sections', is => 'rw', isa => 'ArrayRef', default => sub { [] };
-has 'section_keys',       is => 'rw', isa => 'ArrayRef', default => sub { [] };
-has 'sections',           is => 'rw', isa => 'HashRef',  default => sub { {} };
+has 'completed_sections',  is => 'rw', isa => 'ArrayRef', default => sub { [] };
+has 'section_keys',        is => 'rw', isa => 'ArrayRef', default => sub { [] };
+has 'sections',            is => 'rw', isa => 'HashRef', default => sub { {} };
 
 sub load_sections {
-    my ( $self, $sections ) = @_;
+    my( $self, $sections ) = @_;
 
-    if ( $self->status ) {
+    if( $self->status ) {
         return 0;
     }
 
@@ -39,12 +39,12 @@ sub load_sections {
     my @section_errors;
 
     # Read through sections and load all found sections into sections.
-    if ($sections) {
+    if($sections) {
         $self->sections( {} );
         $self->section_keys( [] );
-        foreach ( @{$sections} ) {
+        foreach( @{$sections} ) {
             my $section = $questions_input->{questions}{sections}{$_};
-            if ( defined $section ) {
+            if( defined $section ) {
                 $self->sections->{$_} = $section;
                 push @{ $self->section_keys }, $_;
             }
@@ -53,10 +53,10 @@ sub load_sections {
             }
         }
         my $error_total = scalar @section_errors;
-        if ( $error_total == scalar @${sections} ) {
+        if( $error_total == scalar @${sections} ) {
             return 0;
         }
-        elsif ( scalar @section_errors >= 1 ) {
+        elsif( scalar @section_errors >= 1 ) {
             die "Error can't load following sections: @section_errors";
         }
     }
@@ -71,9 +71,8 @@ sub load_sections {
 
 sub start {
     my $self = shift;
-    if ( scalar keys %{ $self->sections } == 0 ) {
-        die( "Error: No sections specified for quiz "
-              . Dumper( $self->sections ) );
+    if( scalar keys %{ $self->sections } == 0 ) {
+        die( "Error: No sections specified for quiz " . Dumper( $self->sections ) );
     }
 
     #TODO: Add more checking here to make sure survey has be initiated
@@ -84,16 +83,12 @@ sub start {
 
 sub next_section {
     my $self = shift;
-    if (
-        scalar @{ $self->section_keys } ==
-        scalar @{ $self->completed_sections } )
-    {
+    if( scalar @{ $self->section_keys } == scalar @{ $self->completed_sections } ) {
         $self->status(0);    # end quiz
         return 0;
     }
-    elsif ( scalar @{ $self->completed_questions } == 0 ) {
-        my $next_section =
-          $self->section_keys->[ $self->__get_next_section_index() ];
+    elsif( scalar @{ $self->completed_questions } == 0 ) {
+        my $next_section = $self->section_keys->[ $self->__get_next_section_index() ];
         $self->current_section($next_section);
         return $next_section;
     }
@@ -102,7 +97,7 @@ sub next_section {
 sub next_question {
     my $self    = shift;
     my $section = $self->sections->{ $self->current_section };
-    if ( scalar @{$section} == scalar @{ $self->completed_questions } ) {
+    if( scalar @{$section} == scalar @{ $self->completed_questions } ) {
         $self->section_complete( $self->current_section );
         return 0;
     }
@@ -115,7 +110,7 @@ sub next_question {
 
 # Matches exactly - typos = incorrect
 sub answer_question_exact {
-    my ( $self, $answer ) = @_;
+    my( $self, $answer ) = @_;
 
     my $section      = $self->sections->{ $self->current_section };
     my $cur_question = $self->current_question;
@@ -125,7 +120,7 @@ sub answer_question_exact {
     $correct_answer =~ s/-//g;
     my $total_questions = $self->total_questions + 1;
     $self->total_questions($total_questions);
-    if ( $answer eq $correct_answer ) {
+    if( $answer eq $correct_answer ) {
         my $correct_answers = $self->correct_answers + 1;
         $self->correct_answers($correct_answers);
         return 1;
@@ -138,19 +133,19 @@ sub answer_question_exact {
 
 # Matches a certain amount of a word to allow for typos.
 sub answer_question_approx {
-    my ( $self, $answer ) = @_;
+    my( $self, $answer ) = @_;
 
     my $section      = $self->sections->{ $self->current_section };
     my $cur_question = $self->current_question;
 
     push @{ $self->completed_questions }, $cur_question;
-    my $correct_answer  = $section->[$cur_question]{answer};
+    my $correct_answer = $section->[$cur_question]{answer};
     $correct_answer =~ s/-//g;
-    my $matches         = distance( lc($correct_answer), lc($answer) );
+    my $matches = distance( lc($correct_answer), lc($answer) );
     my $total_questions = $self->total_questions + 1;
     $self->total_questions($total_questions);
 
-    if ( $matches <= $self->approx ) {
+    if( $matches <= $self->approx ) {
         my $correct_answers = $self->correct_answers + 1;
         $self->correct_answers($correct_answers);
         return 1;
@@ -172,7 +167,7 @@ sub reset {
 }
 
 sub section_complete {
-    my ( $self, $section ) = @_;
+    my( $self, $section ) = @_;
     push @{ $self->completed_sections }, $section;
     $self->completed_questions( [] );
 }
@@ -183,7 +178,7 @@ sub __get_next_question_index {
     my $next_index;
     do {
         $next_index = int( rand( scalar @{$section} ) );
-    } while ( grep { $_ == $next_index } @{ $self->completed_questions } );
+    } while( grep { $_ == $next_index } @{ $self->completed_questions } );
     return $next_index;
 }
 
@@ -193,7 +188,7 @@ sub __get_next_section_index {
     my $next_index;
     do {
         $next_index = int( rand( scalar @{$section} ) );
-      } while ( grep { $_ eq @{ $self->section_keys }[$next_index] }
+      } while( grep { $_ eq @{ $self->section_keys }[$next_index] }
         @{ $self->completed_sections } );
     return $next_index;
 }
