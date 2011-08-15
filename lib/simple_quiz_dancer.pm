@@ -14,43 +14,42 @@ get '/' => sub {
     );
 
     $tmp_quiz->load_sections();
-    template 'index',
-      { title => $tmp_quiz->title, sections => $tmp_quiz->section_keys };
+    template 'index', { title => $tmp_quiz->title, sections => $tmp_quiz->section_keys };
 
 };
 
 post '/' => sub {
     my $sections = params->{sections};
-    if ( !UNIVERSAL::isa( $sections, "ARRAY" ) ) {
+    if( !UNIVERSAL::isa( $sections, "ARRAY" ) ) {
         $sections = [];
         push @{$sections}, params->{sections};
     }
-    
-    
-    my $quiz     = Simple::Quiz->new(
+
+
+    my $quiz = Simple::Quiz->new(
         title    => "Learning Cantonese",
         mode     => "shuffle",
         filename => "questions.yaml"
     );
-    
+
     $quiz->load_sections($sections);
     $quiz->start();
-    
+
     session quiz => $quiz;
     redirect 'questions';
 };
 
 get '/questions' => sub {
-    my $quiz = session('quiz');
+    my $quiz     = session('quiz');
     my $section  = $quiz->next_section();
     my $question = $quiz->next_question();
-    
-    if ( scalar @{ $quiz->completed_questions } == 0 ) {
+
+    if( scalar @{ $quiz->completed_questions } == 0 ) {
         $section  = $quiz->next_section();
         $question = $quiz->next_question();
     }
 
-    if ( $quiz->status == 0 ) {
+    if( $quiz->status == 0 ) {
         my $total_correct   = $quiz->correct_answers;
         my $total_questions = $quiz->total_questions;
         my $title           = $quiz->title;
@@ -86,10 +85,8 @@ post '/questions' => sub {
 get '/result' => sub {
 
     my $quiz = session('quiz');
-# return answer, correctness of answer, section, title and have a link to go to next question.
-    my $question =
-      $quiz->sections->{ $quiz->current_section }
-      ->[ $quiz->current_question ];
+    # return answer, correctness of answer, section, title and have a link to go to next question.
+    my $question     = $quiz->sections->{ $quiz->current_section }->[ $quiz->current_question ];
     my $check_answer = $quiz->answer_question_approx( $quiz->answer );
     
     $question->{answer} =~ s/-//g;
@@ -97,10 +94,10 @@ get '/result' => sub {
     session quiz => $quiz;
     template 'result',
       {
-        question  => $question,
-        correct => $check_answer,
-        title   => $quiz->title,
-        section => $quiz->current_section
+        question => $question,
+        correct  => $check_answer,
+        title    => $quiz->title,
+        section  => $quiz->current_section
       };
 };
 
