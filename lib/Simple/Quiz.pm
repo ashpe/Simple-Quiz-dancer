@@ -117,7 +117,7 @@ sub answer_question_exact {
 
     push @{ $self->completed_questions }, $cur_question;
     my $correct_answer = $section->[$cur_question]{answer};
-    $correct_answer =~ s/-//g;
+    $correct_answer =~ s/-/ /g;
     my $total_questions = $self->total_questions + 1;
     $self->total_questions($total_questions);
     if( $answer eq $correct_answer ) {
@@ -140,7 +140,7 @@ sub answer_question_approx {
 
     push @{ $self->completed_questions }, $cur_question;
     my $correct_answer = $section->[$cur_question]{answer};
-    $correct_answer =~ s/-//g;
+    $correct_answer =~ s/-/ /g;
     my $matches = distance( lc($correct_answer), lc($answer) );
     my $total_questions = $self->total_questions + 1;
     $self->total_questions($total_questions);
