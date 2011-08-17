@@ -1,7 +1,30 @@
 Things to add in the future;
+--
 
 User accounts/logins.
-Quiz creating UI
+users_database -> user_id, username, password;
+
+--
+
+Quiz creating Web UI
+
+--
+
 Previous quiz results page. Store it all
-Timer? Maybe.
+results_database -> result_id, user_id, section, correct, total_questions, time_taken;
+
+--
+
+Timer by total quiz, have flag to disable timer mode.
+
+use Benchmark in post data where quiz is started; then results;
+
+create moose attribute start_time and end_time;
+
+$self->start_time(Benchmark->new);
+$self->end_time(Benchmark->new);
+
+my $time_taken = timediff($self->start_time, $self->end_time);
+say "Time taken: " timestr($time_taken);
+
 
