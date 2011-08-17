@@ -8,6 +8,9 @@ users_database -> user_id, username, password;
 
 Quiz creating Web UI
 
+???????????????????? 
+something simple!
+
 --
 
 Previous quiz results page. Store it all
@@ -20,6 +23,9 @@ Timer by total quiz, have flag to disable timer mode.
 use Benchmark in post data where quiz is started; then results;
 
 create moose attribute start_time and end_time;
+
+has 'start_time', is => 'rw', isa => 'Any';
+has 'end_time', is => 'rw', isa => 'Any';
 
 $self->start_time(Benchmark->new);
 $self->end_time(Benchmark->new);
