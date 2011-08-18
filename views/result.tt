@@ -9,7 +9,7 @@
 	    <h2 style="color: red"> [% IF correct; 'Correct'; ELSE; 'Incorrect'; END; %]</h2>
 	    <p><b style="color: blue"> Answer  :</b> [% question.answer %] <br />
 	    <b style="color: green"> English : </b> [% question.question %] <br />
-	    <b>Literally means :</b>  [% question.literally %] </p> 
+	    [% IF question.literally %] <b>Literally means :</b>  [% question.literally %] </p> [% END %]
 	    <a href="./questions">Next question</a>
         </div>
       </div>

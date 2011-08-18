@@ -25,11 +25,19 @@ for my $x (1 .. 15) {
     foreach (@page) {
     if (/English/ && /Chinese/) {
         s/<(.|\n)*?>//g;
-        /English:(.+)Chinese:(.*)Literally:(.*)/;
+	print $_;
+        if (/English:(.*)Chinese:(.*)Literally:(.*)/) {
         my $hash = { question => $1, answer => $2, literally => $3 };
             if (defined $hash->{question} && defined $hash->{answer}) {
                 push $sections{questions}{sections}{int($x)}, $hash;
             }
+	} 
+        elsif (/English:(.*)Chinese:(.*)/) {
+        my $hash = { question => $1, answer => $2 };
+            if (defined $hash->{question} && defined $hash->{answer}) {
+                push $sections{questions}{sections}{int($x)}, $hash;
+            }
+	}
         }
     }
 }
