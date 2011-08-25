@@ -9,10 +9,14 @@ use Modern::Perl;
 use Moose;
 use YAML::XS qw/LoadFile/;
 use Text::LevenshteinXS qw/distance/;
+use Benchmark;
 
+has 'start_time', is => 'rw', isa => 'Any';
+has 'end_time', is => 'rw', isa => 'Any';
 has 'approx', is => 'rw', isa => 'Int', default => '1';
 has 'filename',            is => 'rw', isa => 'Str';
 has 'status',              is => 'rw', isa => 'Bool';
+has 'timed',              is => 'rw', isa => 'Bool';
 has 'title',               is => 'rw', isa => 'Str';
 has 'answer',              is => 'rw', isa => 'Str';
 has 'current_section',     is => 'rw', isa => 'Str';
@@ -38,7 +42,7 @@ sub load_sections {
     my @section_errors;
 
     # Read through sections and load all found sections into sections.
-    if($sections) {
+    if ( $sections ) {
         $self->sections( {} );
         $self->section_keys( [] );
         foreach( @{$sections} ) {
@@ -73,7 +77,9 @@ sub start {
     if( scalar keys %{ $self->sections } == 0 ) {
         die( "Error: No sections specified for quiz " . Dumper( $self->sections ) );
     }
-
+    if ($self->timed) {
+	$self->start_time(Benchmark->new);
+    }
     #TODO: Add more checking here to make sure survey has be initiated
     #      correctly.
     $self->status(1);    # start quiz
@@ -190,6 +196,13 @@ sub __get_next_section_index {
       } while( grep { $_ eq @{ $self->section_keys }[$next_index] }
         @{ $self->completed_sections } );
     return $next_index;
+}
+
+sub calculate_time {
+    my $self = shift;
+    $self->end_time(Benchmark->new);
+    my $time_taken = timediff($self->end_time, $self->start_time);
+    return $time_taken;
 }
 
 1;

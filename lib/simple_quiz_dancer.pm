@@ -29,6 +29,7 @@ post '/' => sub {
     my $quiz = Simple::Quiz->new(
         title    => "Learning Cantonese",
         mode     => "shuffle",
+        timed    => 1,
         filename => "questions.yaml"
     );
 
@@ -53,13 +54,15 @@ get '/questions' => sub {
         my $total_correct   = $quiz->correct_answers;
         my $total_questions = $quiz->total_questions;
         my $title           = $quiz->title;
+	my $total_time 	    = $quiz->calculate_time();
         $quiz->reset();
         session quiz => $quiz;
         template 'finished',
           {
             total_correct   => $total_correct,
             total_questions => $total_questions,
-            title           => $title
+            title           => $title,
+	    total_time	    => $total_time, 
           };
     }
     else {
