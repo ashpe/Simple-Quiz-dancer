@@ -1,0 +1,23 @@
+<div id="page">
+      <div id="content">
+        
+          <div id="header">
+              <h2>[% title %]</h2>
+          </div>
+
+            <h2> Logged in as [% username %] </h2>
+
+            <h3> Select sections you wish to complete..</h3>
+	    <form id="section_select" method="POST">
+            [% FOREACH section IN sections.nsort %]
+                [% section %] <input type="checkbox" name="sections" value="[% section %]" /><br />
+            [% END %]
+
+            <br />
+    
+            <input type="submit" value="Start quiz!" />
+	    </form>
+
+        </div>
+      </div>
+    </div>
