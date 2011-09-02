@@ -34,6 +34,11 @@ sub load_sections {
 
     open my $fh, '<', $self->filename;
     my $questions_input = LoadFile($fh);
+    
+    # Allows to specify title overide, or defaults to file title. 
+    if (!$self->title) {
+        $self->title($questions_input->{title});
+    }
 
     my @section_errors;
 

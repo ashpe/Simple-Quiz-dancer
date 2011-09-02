@@ -8,7 +8,6 @@ our $VERSION = '0.1';
 get '/' => sub {
 
     my $tmp_quiz = Simple::Quiz->new(
-        title    => "Learning Cantonese",
         mode     => "shuffle",
         filename => "questions.yaml"
     );
@@ -27,7 +26,6 @@ post '/' => sub {
 
 
     my $quiz = Simple::Quiz->new(
-        title    => "Learning Cantonese",
         mode     => "shuffle",
         filename => "questions.yaml"
     );
