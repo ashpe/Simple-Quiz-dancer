@@ -5,7 +5,22 @@ use Simple::Quiz;
 
 our $VERSION = '0.1';
 
+
 get '/' => sub {
+    template 'index';
+};
+
+post '/' => sub {
+
+    #TODO:: Check login is in database. 
+
+   
+    session username => params->{username};
+    session password => params->{password};
+    redirect 'start';
+};
+
+get '/start' => sub {
 
     my $tmp_quiz = Simple::Quiz->new(
         title    => "Learning Cantonese",
@@ -14,11 +29,11 @@ get '/' => sub {
     );
 
     $tmp_quiz->load_sections();
-    template 'index', { title => $tmp_quiz->title, sections => $tmp_quiz->section_keys };
+    template 'start', { title => $tmp_quiz->title, sections => $tmp_quiz->section_keys, username => session('username') };
 
 };
 
-post '/' => sub {
+post '/start' => sub {
     my $sections = params->{sections};
     if( !UNIVERSAL::isa( $sections, "ARRAY" ) ) {
         $sections = [];

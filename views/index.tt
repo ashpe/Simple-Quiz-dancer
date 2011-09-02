@@ -5,15 +5,19 @@
               <h2>[% title %]</h2>
           </div>
 
-            <h3> Select sections you wish to complete! </h3>
+            <h3> Quiz Login </h3>
 	    <form id="section_select" method="POST">
-            [% FOREACH section IN sections.nsort %]
-                [% section %] <input type="checkbox" name="sections" value="[% section %]" /><br />
-            [% END %]
+		<label for="username">Username:</label>
+		<input type="text" name="username" id="username" />
 
-            <br />
-    
-            <input type="submit" value="Start quiz!" />
+		<br />
+			
+		<label for="password">Password:</label>
+		<input type="text" name="password" id="password" />
+            	<br />
+   	    	
+		<button>Register</button>
+                <input type="submit" value="Login" />
 	    </form>
 
         </div>
